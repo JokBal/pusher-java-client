@@ -245,6 +245,19 @@ public class Pusher {
 		return channel;
 	}
 
+    public PresenceChannel subscribePermanent(String channelName) {
+        return subscribePermanent(channelName, null);
+    }
+
+    public PresenceChannel subscribePermanent(String channelName, PresenceChannelEventListener listener, String... eventNames) {
+
+        throwExceptionIfNoAuthorizerHasBeenSet();
+        PresenceChannelImpl channel = factory.newPresenceChannel(connection, channelName, pusherOptions.getAuthorizer());
+        channelManager.subscribeTo(channel, listener, eventNames);
+
+        return channel;
+    }
+
 	/**
 	 * Unsubscribes from a channel using via the name of the channel.
 	 * @param channelName the name of the channel to be unsubscribed from.
