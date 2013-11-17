@@ -18,7 +18,4 @@ public interface Authorizer {
 		 * @throws AuthorizationFailureException if the authentication fails.
 		 */
     String authorize(String channelName, String socketId) throws AuthorizationFailureException;
-    String authorize(String channelName, String socketId, String userName, String userId, String mobileKey) throws AuthorizationFailureException;
-
-
 }

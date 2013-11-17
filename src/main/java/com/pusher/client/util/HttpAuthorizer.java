@@ -67,25 +67,18 @@ public class HttpAuthorizer implements Authorizer {
 	public void setQueryStringParameters(HashMap<String, String> queryStringParameters) {
 		this.mQueryStringParameters = queryStringParameters;
 	}
-    @Override
-    public String authorize(String channelName, String socketId)
-    {
-        return authorize(channelName, socketId, null, null, null);
-    }
 
 	@Override
-	public String authorize(String channelName, String socketId, String userName, String userId, String mobileKey)
+	public String authorize(String channelName, String socketId)
 			throws AuthorizationFailureException {
 
 		try {
 			StringBuffer urlParameters = new StringBuffer(); 
 			urlParameters.append("channel_name=").append(URLEncoder.encode(channelName, ENCODING_CHARACTER_SET));
 			urlParameters.append("&socket_id=").append(URLEncoder.encode(socketId, ENCODING_CHARACTER_SET));
-            urlParameters.append("&user_name=").append(URLEncoder.encode(userName, ENCODING_CHARACTER_SET));
-            urlParameters.append("&user_id=").append(URLEncoder.encode(userId, ENCODING_CHARACTER_SET));
-            urlParameters.append("&mobile_key=").append(URLEncoder.encode(mobileKey, ENCODING_CHARACTER_SET));
 
-            // Adding extra parameters supplied to be added to query string.
+
+			// Adding extra parameters supplied to be added to query string.
 			for(String parameterName : mQueryStringParameters.keySet()){
 				urlParameters.append("&").append(parameterName).append("=");
 				urlParameters.append(URLEncoder.encode(mQueryStringParameters.get(parameterName), ENCODING_CHARACTER_SET));
