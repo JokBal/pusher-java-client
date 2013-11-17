@@ -106,7 +106,7 @@ public class PresenceChannelImpl extends PrivateChannelImpl implements
 
 	@Override
 	protected String[] getDisallowedNameExpressions() {
-		return new String[] { "^(?!presence-).*" , "^(?!permanent-).*"};
+		return new String[] { "^(?!presence-|permanent-).*"};
 	}
 
 	@Override
